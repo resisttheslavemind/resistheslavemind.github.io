@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>$Morpheus - Resist the Slave Mind</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .canvadiv {
+            overflow: scroll;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            background: black;
+        }
+
+        @font-face {
+            font-family: 'matrixmedium';
+            src: url('matrix-webfont.woff2') format('woff2'),
+                 url('matrix-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        #morpheus {
+            /* position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            display: block;
+ */
+            width: 400px;
+            height: 400px;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-family: 'matrixmedium', Arial, sans-serif;
+            font-size: 5em;
+            font-weight: bold;
+            font-style: normal;
+            color: white;
+            text-align: center;
+        }
+
+        p {
+            font-family: 'matrixmedium', Arial, sans-serif;
+            font-size: 1.5em;
+            font-weight: normal;
+            font-style: normal;
+            color: white;
+            text-align: center;
+            /* display: block; */
+        }
+        
+        .neo {
+            vertical-align: top;
+            display: inline-block;
+            text-align: center;
+            width: 500px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .thematrixtruth {
+            float: left;
+            display: block;
+            clear: both;
+            /* height: 150px; */
+            width: 450px;
+            padding: 20px;
+            border: 1px solid #00ff00;
+            text-align: center;
+        }
+
+        .thedoor {
+            float: left;
+            color: #00ffff;
+            background: black;
+            text-align: center;
+        }
+
+        a {
+            color: #ffff00;
+        }
+    </style>
+</head>
+<body>
+    <div class="canvadiv">
+    <canvas id="matrix"></canvas>
+    </div>
+    <h1>RESIST THE SLAVE MIND</h1>
+    <div class="neo">
+        <img id="morpheus" src="morpheus-face.jpeg" alt="Morpheus is here">
+
+        <p class="thematrixtruth">The Matrix is everywhere. It is all around us. Even now, in this very room. You can see it when you look out your window or when you turn on your television. You can feel it when you go to work... when you go to church... when you pay your taxes. It is the world that has been pulled over your eyes to blind you from the truth.</p>
+        
+        <br />
+
+        <p class="thedoor">"I Can Only Show You The <a href="https://app.psydex.com/">Door</a>. You're The One That Has To Walk <a href="https://t.me/ResistThePSYOP">Through It</a>."</p>
+    </div>
+
+    <script>
+        // Matrix Animation Background
+        var canvas = document.getElementById('matrix');
+        var context = canvas.getContext('2d');
+
+        var width, height;
+        var columns = 0;
+        var matrixCode = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}';
+
+        function setCanvasSize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+
+            columns = Math.floor(width / 20);
+            canvas.width = width;
+            canvas.height = height;
+        }
+
+        function drawMatrix() {
+            context.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            context.fillRect(0, 0, width, height);
+
+            context.fillStyle = '#0F0';
+            context.font = '15px monospace';
+
+            for (var i = 0; i < columns; i++) {
+                var x = i * 20;
+                var y = Math.random() * height;
+
+                context.fillText(matrixCode[Math.floor(Math.random() * matrixCode.length)], x, y);
+
+                if (y > 100 + Math.random() * 10000) {
+                    context.fillStyle = '#000';
+                    context.fillRect(x, y - 100, 20, 100);
+                    context.fillStyle = '#0F0';
+                    context.fillText(matrixCode[Math.floor(Math.random() * matrixCode.length)], x, y - 80);
+                }
+            }
+        }
+
+        function animateMatrix() {
+            drawMatrix();
+            requestAnimationFrame(animateMatrix);
+        }
+
+        setCanvasSize();
+        animateMatrix();
+    </script>
+</body>
+</html>
+
